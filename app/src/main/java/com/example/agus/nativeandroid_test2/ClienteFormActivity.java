@@ -14,11 +14,10 @@ import java.util.List;
 
 public class ClienteFormActivity extends AppCompatActivity
 {
-    Button btn_guardar;
+    Button btn_guardar, btn_eliminar;
     EditText et_razon_social, et_cedula;
-    Cliente cliente;
+    Cliente cliente = null;
     Bundle params;
-    Boolean is_new = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,26 +35,43 @@ public class ClienteFormActivity extends AppCompatActivity
     {
         params = getIntent().getExtras();
 
-        if( !params.equals(null) )
-            set_cliente( params.getString("id") );
+        if( params != null )
+            data_exist();
+        else
+            data_not_exist();
+    }
+    public void data_not_exist()
+    {
+        btn_eliminar.setVisibility( View.INVISIBLE );
+    }
+
+    public void data_exist()
+    {
+        set_cliente( params.getString("id") );
 
     }
 
     public void set_cliente(String id)
     {
-        Cliente cliente = Cliente.findById( Cliente.class, Long.valueOf(id) );
+        cliente = Cliente.findById( Cliente.class, Long.valueOf(id) );
 
         et_razon_social.setText( cliente.razon_social );
         et_cedula.setText( cliente.cedula );
-        is_new = false;
     }
 
     public void set_elements()
     {
         btn_guardar = (Button) findViewById( R.id.btn_guardar );
+        btn_eliminar = (Button) findViewById( R.id.btn_eliminar );
         et_razon_social = (EditText) findViewById( R.id.et_razon_social );
         et_cedula = (EditText) findViewById( R.id.et_cedula );
     }
+
+    public void finish()
+    {
+        startActivity( new Intent( this, MainActivity.class ) );
+    }
+
 
     public void set_listeners()
     {
@@ -65,6 +81,15 @@ public class ClienteFormActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 guardar();
+            }
+        });
+
+        btn_eliminar.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                eliminar();
             }
         });
     }
@@ -82,14 +107,19 @@ public class ClienteFormActivity extends AppCompatActivity
 
     public void guardar()
     {
-        if( is_new )
+        if( cliente == null )
             crear();
         else
             actualizar();
 
         cliente.save();
+        finish();
+    }
 
-        startActivity( new Intent( this, MainActivity.class ) );
+    public void eliminar()
+    {
+        cliente.delete();
+        finish();
     }
 
 }
