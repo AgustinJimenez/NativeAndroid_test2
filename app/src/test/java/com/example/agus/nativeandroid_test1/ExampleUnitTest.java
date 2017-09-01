@@ -1,4 +1,4 @@
-package com.example.agus.nativeandroid_test2;
+package com.example.agus.NativeAndroid_test2;
 
 import org.junit.Test;
 

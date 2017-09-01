@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.agus.NativeAndroid_test2.fragments.clientes.cliente_list"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Agregar Cliente"
+    android:id="@+id/btn_agregar"
+    />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_clientes">
+    </ListView>
+
+</LinearLayout>

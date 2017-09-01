@@ -1,5 +1,4 @@
-package com.example.agus.nativeandroid_test2.entities;
-
+package com.example.agus.NativeAndroid_test2.entities;
 
 import android.database.DataSetObserver;
 import android.view.View;
@@ -7,30 +6,52 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 
 import com.orm.SugarRecord;
-
 /**
- * Created by agus on 16/08/17.
+ * Created by agus on 31/08/17.
  */
 
-public class Cliente extends SugarRecord<Cliente> implements Adapter {
-
+public class Proveedor extends SugarRecord<Proveedor> implements Adapter
+{
     public String razon_social = "";
-    public String cedula = "";
+    public String ruc = "";
+    public String categoria = "";
+    public String direccion = "";
+    public String email = "";
+    public String telefono = "";
+    public String celular = "";
+    public String fax = "";
+    public String contacto = "";
 
-    public Cliente(  )
-    {
-    }
-
-    public Cliente( String razon_social, String cedula )
+    public Proveedor
+            (){}
+    public Proveedor
+    (
+         String razon_social,
+         String ruc,
+         String categoria,
+         String direccion,
+         String email,
+         String telefono,
+         String celular,
+         String fax,
+         String contacto
+    )
     {
         this.razon_social = razon_social;
-        this.cedula = cedula;
+        this.ruc = ruc;
+        this.categoria = categoria;
+        this.direccion = direccion;
+        this.email = email;
+        this.telefono = telefono;
+        this.celular = celular;
+        this.fax = fax;
+        this.contacto = contacto;
     }
 
     @Override
     public String toString()
     {
-        return this.getId()+" - "+ razon_social + " - " + cedula;
+        return this.getId()+" - "+ razon_social + " - " + ruc;
     }
 
     @Override
