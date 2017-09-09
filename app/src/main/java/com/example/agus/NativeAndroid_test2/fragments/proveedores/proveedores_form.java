@@ -1,21 +1,18 @@
 package com.example.agus.NativeAndroid_test2.fragments.proveedores;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.DigitsKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.agus.NativeAndroid_test2.Providers.KeyboardProvider;
 import com.example.agus.NativeAndroid_test2.R;
-import com.example.agus.NativeAndroid_test2.entities.Cliente;
 import com.example.agus.NativeAndroid_test2.entities.Proveedor;
+import com.example.agus.NativeAndroid_test2.fragments.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,9 +20,8 @@ import com.example.agus.NativeAndroid_test2.entities.Proveedor;
  * {@link proveedores_form.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class proveedores_form extends Fragment {
-
-    private OnFragmentInteractionListener mListener;
+public class proveedores_form extends BaseFragment
+{
 
     Button btn_guardar, btn_eliminar;
     EditText et_razon_social, et_ruc, et_categoria, et_direccion, et_email, et_telefono, et_celular, et_fax, et_contacto;
@@ -179,58 +175,14 @@ public class proveedores_form extends Fragment {
                 actualizar();
 
             item.save();
-            finish();
+            back();
         }
     }
 
     private void eliminar()
     {
         item.delete();
-        finish();
+        back();
     }
 
-    private void finish()
-    {
-        getActivity().onBackPressed();
-    }
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

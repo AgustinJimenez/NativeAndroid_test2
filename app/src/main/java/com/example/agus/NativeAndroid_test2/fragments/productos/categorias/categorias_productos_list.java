@@ -1,8 +1,7 @@
-package com.example.agus.NativeAndroid_test2.fragments.proveedores;
+package com.example.agus.NativeAndroid_test2.fragments.productos.categorias;
+
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,30 +11,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.agus.NativeAndroid_test2.Providers.Adapters.Empleados.EmpleadosAdapter;
-import com.example.agus.NativeAndroid_test2.Providers.Adapters.Proveedores.ProveedoresAdapter;
-import com.example.agus.NativeAndroid_test2.Providers.KeyboardProvider;
 import com.example.agus.NativeAndroid_test2.R;
-import com.example.agus.NativeAndroid_test2.entities.Proveedor;
+import com.example.agus.NativeAndroid_test2.entities.CategoriaProducto;
 import com.example.agus.NativeAndroid_test2.fragments.BaseFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class proveedores_list extends BaseFragment
+public class categorias_productos_list extends BaseFragment
 {
-
     ListView lv_lista;
-    List<Proveedor> list_items;
+    ArrayAdapter<CategoriaProducto> adapter_items;
+    List<CategoriaProducto> list_items;
     Button btn_agregar;
     View vista;
-    private static ProveedoresAdapter adapter_items;
-
-    public proveedores_list()
+    public categorias_productos_list()
     {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -44,7 +36,6 @@ public class proveedores_list extends BaseFragment
         set_elements();
         load_item_list();
         set_listeners();
-        KeyboardProvider.hideKeyboard( getContext() );
         return vista;
     }
 
@@ -56,22 +47,10 @@ public class proveedores_list extends BaseFragment
 
     private void load_item_list()
     {
-        list_items = Proveedor.listAll( Proveedor.class );
+        list_items = CategoriaProducto.listAll( CategoriaProducto.class );
         Log.i("item", String.valueOf(list_items));
-        adapter_items = new ProveedoresAdapter( list_items, getContext() );
+        adapter_items = new ArrayAdapter( getActivity(), android.R.layout.simple_list_item_1, list_items);
         lv_lista.setAdapter( adapter_items );
-    }
-
-    public void open_fragment(Fragment target_fragment)
-    {
-
-        getFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
-                .replace(R.id.fragment_container, target_fragment)
-                .addToBackStack(null)
-                .commit();
-
     }
 
     private void set_listeners()
@@ -82,7 +61,7 @@ public class proveedores_list extends BaseFragment
             @Override
             public void onClick(View view)
             {
-                open_fragment( new proveedores_form());
+                open_fragment( new categorias_productos_form());
             }
         });
 
@@ -93,9 +72,8 @@ public class proveedores_list extends BaseFragment
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id)
             {
-
-                Proveedor item_selected = (Proveedor) adapterView.getItemAtPosition( position );
-                proveedores_form next_fragment = new proveedores_form();
+                CategoriaProducto item_selected = (CategoriaProducto) adapterView.getItemAtPosition( position );
+                categorias_productos_form next_fragment = new categorias_productos_form();
                 Bundle params = new Bundle();
                 params.putString( "id", String.valueOf( item_selected.getId() ) );
                 next_fragment.setArguments(params);
@@ -106,5 +84,12 @@ public class proveedores_list extends BaseFragment
 
 
 
+
     }
+
+
+
+
+
+
 }
