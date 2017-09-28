@@ -11,6 +11,9 @@
         <item
             android:id="@+id/nav_empleados"
             android:title="Empleados" />
+        <item
+            android:id="@+id/nav_noticias"
+            android:title="Noticias" />
 
         <item android:title="Productos">
 

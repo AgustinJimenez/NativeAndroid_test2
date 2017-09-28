@@ -2,6 +2,7 @@ package com.example.agus.NativeAndroid_test2.fragments.proveedores;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputFilter;
 import android.text.method.DigitsKeyListener;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,22 +47,48 @@ public class proveedores_form extends BaseFragment
     private void set_elements()
     {
         btn_guardar = vista.findViewById( R.id.btn_guardar );
-        btn_eliminar = vista.findViewById( R.id.btn_eliminar );
+        //btn_eliminar = vista.findViewById( R.id.btn_eliminar );
+
         et_razon_social = vista.findViewById( R.id.et_razon_social );
+        setEditTextMaxLength(et_razon_social, 40);
+
         et_ruc = vista.findViewById( R.id.et_ruc );
+        setEditTextMaxLength(et_ruc, 10);
+
         et_categoria = vista.findViewById( R.id.et_categoria );
+        setEditTextMaxLength(et_categoria, 15);
+
         et_direccion = vista.findViewById( R.id.et_direccion );
+        setEditTextMaxLength(et_direccion, 40);
+
         et_email = vista.findViewById( R.id.et_email );
+        setEditTextMaxLength(et_email, 40);
+
         et_telefono = vista.findViewById( R.id.et_telefono );
+        setEditTextMaxLength(et_telefono, 10);
+
         et_celular = vista.findViewById( R.id.et_celular );
+        setEditTextMaxLength(et_celular, 10);
+
         et_fax = vista.findViewById( R.id.et_fax );
+        setEditTextMaxLength(et_fax, 15);
+
         et_contacto = vista.findViewById( R.id.et_contacto );
+        setEditTextMaxLength(et_contacto, 150);
 
         et_razon_social.requestFocus();
+
         KeyboardProvider.showKeyboard( getContext() );
         et_telefono.setKeyListener(new DigitsKeyListener());
         et_celular.setKeyListener(new DigitsKeyListener());
 
+    }
+
+    public void setEditTextMaxLength(EditText editText, int length)
+    {
+        InputFilter[] FilterArray = new InputFilter[1];
+        FilterArray[0] = new InputFilter.LengthFilter(length);
+        editText.setFilters(FilterArray);
     }
 
 
@@ -121,7 +148,7 @@ public class proveedores_form extends BaseFragment
     }
     private void data_not_exist()
     {
-        btn_eliminar.setVisibility( View.INVISIBLE );
+       // btn_eliminar.setVisibility( View.INVISIBLE );
     }
 
     private void data_exist()
@@ -143,6 +170,7 @@ public class proveedores_form extends BaseFragment
             }
         });
 
+/*
         btn_eliminar.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -151,6 +179,7 @@ public class proveedores_form extends BaseFragment
                 eliminar();
             }
         });
+*/
     }
 
     private boolean validate_form()

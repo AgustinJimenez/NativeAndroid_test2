@@ -16,6 +16,7 @@ import com.example.agus.NativeAndroid_test2.Providers.KeyboardProvider;
 import com.example.agus.NativeAndroid_test2.fragments.BaseFragment;
 import com.example.agus.NativeAndroid_test2.fragments.clientes.cliente_list;
 import com.example.agus.NativeAndroid_test2.fragments.empleados.empleados_list;
+import com.example.agus.NativeAndroid_test2.fragments.noticias.noticias_list;
 import com.example.agus.NativeAndroid_test2.fragments.productos.categorias.categorias_productos_list;
 import com.example.agus.NativeAndroid_test2.fragments.proveedores.proveedores_list;
 
@@ -110,6 +111,11 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.nav_empleados)
         {
             fragment = new  empleados_list();
+            fragment_transaction = true;
+        }
+        else if (id == R.id.nav_noticias)
+        {
+            fragment = new noticias_list();
             fragment_transaction = true;
         }
 

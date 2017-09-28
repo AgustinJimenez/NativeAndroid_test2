@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.agus.NativeAndroid_test2.Providers.Adapters.Empleados.EmpleadosAdapter;
@@ -30,6 +31,8 @@ public class proveedores_list extends BaseFragment
     Button btn_agregar;
     View vista;
     private static ProveedoresAdapter adapter_items;
+    ImageView iv_editar;
+
 
     public proveedores_list()
     {
@@ -52,13 +55,14 @@ public class proveedores_list extends BaseFragment
     {
         lv_lista = vista.findViewById( R.id.lv_lista );
         btn_agregar = vista.findViewById( R.id.btn_agregar );
+        iv_editar = vista.findViewById( R.id.item_editar );
     }
 
     private void load_item_list()
     {
         list_items = Proveedor.listAll( Proveedor.class );
-        Log.i("item", String.valueOf(list_items));
-        adapter_items = new ProveedoresAdapter( list_items, getContext() );
+        //Log.i("item", String.valueOf(list_items));
+        adapter_items = new ProveedoresAdapter( list_items, getContext() , getActivity());
         lv_lista.setAdapter( adapter_items );
     }
 
@@ -66,11 +70,11 @@ public class proveedores_list extends BaseFragment
     {
 
         getFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
-                .replace(R.id.fragment_container, target_fragment)
-                .addToBackStack(null)
-                .commit();
+        .beginTransaction()
+        .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
+        .replace(R.id.fragment_container, target_fragment)
+        .addToBackStack(null)
+        .commit();
 
     }
 
@@ -82,12 +86,12 @@ public class proveedores_list extends BaseFragment
             @Override
             public void onClick(View view)
             {
-                open_fragment( new proveedores_form());
+                open_fragment( new proveedores_form() );
             }
         });
 
 
-
+/*
         lv_lista.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -103,7 +107,7 @@ public class proveedores_list extends BaseFragment
 
             }
         });
-
+*/
 
 
     }
