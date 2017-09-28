@@ -51,11 +51,17 @@ public class noticias_list extends BaseFragment
         rv_lista.setHasFixedSize( true );
         LinearLayoutManager llm = new LinearLayoutManager( this.getContext() );
         rv_lista.setLayoutManager( llm );
-
-        //if( noticias_lists.size() == 0 )
+Log.d("=====================================>", String.valueOf( noticias_lists.size() ));
+        if( noticias_lists.size() == 0 )
             make_request();
-
+        set_adapter();
         return vista;
+    }
+
+    private void set_adapter()
+    {
+        NoticiasAdapter adapter = new NoticiasAdapter( noticias_lists, getContext(), getActivity() );
+        rv_lista.setAdapter( adapter );
     }
 
     private void make_request()
@@ -86,8 +92,8 @@ public class noticias_list extends BaseFragment
 
                     noticias_lists.add( new Noticia( titulo, resumen, contenido, imagen_url ) );
                 }
-                NoticiasAdapter adapter = new NoticiasAdapter( noticias_lists, getContext(), getActivity() );
-                rv_lista.setAdapter( adapter );
+                set_adapter();
+
             }
             @Override
             public void onErrorResponse()
