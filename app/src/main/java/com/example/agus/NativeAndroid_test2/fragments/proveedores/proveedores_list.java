@@ -1,26 +1,20 @@
 package com.example.agus.NativeAndroid_test2.fragments.proveedores;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.example.agus.NativeAndroid_test2.Providers.Adapters.Empleados.EmpleadosAdapter;
 import com.example.agus.NativeAndroid_test2.Providers.Adapters.Proveedores.ProveedoresAdapter;
 import com.example.agus.NativeAndroid_test2.Providers.KeyboardProvider;
 import com.example.agus.NativeAndroid_test2.R;
 import com.example.agus.NativeAndroid_test2.entities.Proveedor;
 import com.example.agus.NativeAndroid_test2.fragments.BaseFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class proveedores_list extends BaseFragment
@@ -44,6 +38,7 @@ public class proveedores_list extends BaseFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         vista = inflater.inflate(R.layout.fragment_proveedores_list, container, false);
+
         set_elements();
         load_item_list();
         set_listeners();
@@ -111,4 +106,22 @@ public class proveedores_list extends BaseFragment
 
 
     }
+
+    private void seed_proveedores(Integer cantidad_proveedores)
+    {
+
+        for(int i=0; i< cantidad_proveedores; i++)
+            new Proveedor
+                    ("Proveedor Nro "+i,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "").save();
+
+    }
+
 }

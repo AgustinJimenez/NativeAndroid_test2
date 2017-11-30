@@ -39,6 +39,13 @@ public class noticias_read extends BaseFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         vista = inflater.inflate(R.layout.fragment_noticias_read, container, false);
+
+        set_elements();
+        return vista;
+    }
+
+    private void set_elements()
+    {
         tv_titulo = vista.findViewById( R.id.tv_titulo );
         tv_contenido = vista.findViewById( R.id.tv_contenido );
         iv_imagen = vista.findViewById( R.id.iv_noticia_imagen );
@@ -52,10 +59,5 @@ public class noticias_read extends BaseFragment
         tv_titulo.setText( titulo );
         tv_contenido.setText( contenido );
         iv_imagen = PicassoProvider.load_image_from_url( imagen_url, this.getContext() ,iv_imagen );
-
-
-
-        return vista;
     }
-
 }

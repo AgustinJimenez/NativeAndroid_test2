@@ -49,11 +49,23 @@ public class noticias_list extends BaseFragment
         vista = inflater.inflate( R.layout.fragment_noticias, container, false );
         rv_lista = vista.findViewById( R.id.rv_lista );
         rv_lista.setHasFixedSize( true );
-        LinearLayoutManager llm = new LinearLayoutManager( this.getContext() );
+        LinearLayoutManager llm = new LinearLayoutManager( this.getContext() )
+        {
+            /*
+            @Override
+            public boolean canScrollVertically()
+            {
+                return false;
+            }
+            */
+        };
+
         rv_lista.setLayoutManager( llm );
-Log.d("=====================================>", String.valueOf( noticias_lists.size() ));
+
+
         if( noticias_lists.size() == 0 )
             make_request();
+
         set_adapter();
         return vista;
     }
@@ -88,7 +100,7 @@ Log.d("=====================================>", String.valueOf( noticias_lists.s
                     imagen_url = "http://lorempixel.com/500/"+(300+i)+"/";
 
                     if( contenido.length() > 80 )
-                        resumen = contenido.substring(0, 80);
+                        resumen = contenido.substring(0, 80)+" ...";
 
                     noticias_lists.add( new Noticia( titulo, resumen, contenido, imagen_url ) );
                 }

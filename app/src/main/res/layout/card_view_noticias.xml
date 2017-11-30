@@ -34,8 +34,6 @@ android:paddingLeft="16dp">
             android:layout_height="100dp"
             android:orientation="vertical"
             android:weightSum="1"
-            android:layout_toRightOf="@+id/iv_imagen"
-            android:layout_toEndOf="@+id/iv_imagen"
             android:layout_alignParentBottom="true">
 
                 <TextView
